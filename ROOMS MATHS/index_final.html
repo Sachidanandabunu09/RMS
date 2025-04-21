@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>ROOMS MATHS</title>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js'></script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alkatra&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alumni+Sans+Inline+One&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton+SC&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/Articles-Cards-images.css">
+    <!-- Add Calendar CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css">
+    <style>
+        .status-btn {
+            width: 100%;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .booked-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .available-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .book-now-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .view-calendar-btn {
+            background-color: #6c757d;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .status-circle {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .room-title {
+            border-bottom: 2px solid #343a40;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .days-dropdown {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .days-dropdown p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .days-option {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            padding: 5px 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .days-option:hover {
+            background-color: #0056b3;
+        }
+        
+        .room-details {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .room-detail-item {
+            display: flex;
+            margin-bottom: 5px;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            margin-right: 5px;
+            min-width: 80px;
+        }
+        
+        .calendar-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+        
+        .calendar-modal-content {
+            background-color: #f8f9fa;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 900px;
+        }
+        
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-modal:hover {
+            color: black;
+        }
+        
+        #calendar {
+            margin-top: 20px;
+            height: 500px;
+        }
+        
+        .fc-event {
+            cursor: pointer;
+        }
+        
+        .modal-room-title {
+            color: #343a40;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Alfa Slab One', serif;
+        }
+    </style>
+</head>
+
+<body style="background: linear-gradient(#212529, #495057);">
+    <div class="container py-4 py-xl-5" style="background: linear-gradient(#ced4da, #1b1a1a 50%);">
+        <div class="row mb-5" style="background: #343a40;">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 style="color: #e9ecef;font-family: 'Alfa Slab One', serif;">ROOMS AVAILABLE</h2>
+                <p class="w-lg-50"></p>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <!-- Room 1: Seminar Hall -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="auditorium" style="height: 200px;" src="assets/img/gff3fdf2fc2cd460baac5c5b248ebe3c9e04cb85135e315e4e4d5acde32c92f1dae8e4d8bcc7597a0a947a1cd7ac523aa_640.jpg">
+                    <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
+                        <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">SEMINAR HALL</h4>
+                        <div class="room-details">
+                            <div class="room-detail-item">
+                                <span class="detail-label">Capacity:</span>
+                                <span>350 seats</span>
+                            </div>
+                            <div class="room-detail-item">
+                                <span class="detail-label">Facilities:</span>
+                                <span>Projector, Sound System, Stage</span>
+                            </div>
+                            <div class="room-detail-item">
+                                <span class="detail-label">Location:</span>
+                                <span>Main Building, Ground Floor</span>
+                            </div>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-circle" style="background-color: #dc3545;"></div>
+                            <h5 style="margin: 0;">Current Status: Booked</h5>
+                        </div>
+                        <button class="status-btn view-calendar-btn">VIEW CALENDAR</button>
+                        <button class="status-btn booked-btn">BOOKED</button>
+                        <button class="status-btn available-btn">AVAILABLE</button>
+                        <button class="status-btn book-now-btn">BOOK NOW</button>
+                        <div class="days-dropdown">
+                            <p>Select number of days:</p>
+                            <div class="days-option" data-days="1">1 Day</div>
+                            <div class="days-option" data-days="2">2 Days</div>
+                            <div class="days-option" data-days="3">3 Days</div>
+                            <div class="days-option" data-days="4">4 Days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Room 2: MATHS 211 -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src="assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg">
+                    <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
+                        <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">MATHS 211</h4>
+                        <div class="room-details">
+                            <div class="room-detail-item">
+                                <span class="detail-label">Capacity:</span>
+                                <span>120 seats</span>
+                            </div>
+                            <div class="room-detail-item">
+                                <span class="detail-label">Facilities:</span>
+                                <span>Projector, Whiteboard, AC</span>
+                            </div>
+                            <div class="room-detail-item">
+                                <span class="detail-label">Location:</span>
+                                <span>AI Building, First Floor</span>
+                            </div>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-circle" style="background-color: #28a745;"></div>
+                            <h5 style="margin: 0;">Current Status: Available</h5>
+                        </div>
+                        <button class="status-btn view-calendar-btn">VIEW CALENDAR</button>
+                        <button class="status-btn booked-btn">BOOKED</button>
+                        <button class="status-btn available-btn">AVAILABLE</button>
+                        <button class="status-btn book-now-btn">BOOK NOW</button>
+                        <div class="days-dropdown">
+                            <p>Select number of days:</p>
+                            <div class="days-option" data-days="1">1 Day</div>
+                            <div class="days-option" data-days="2">2 Days</div>
+                            <div class="days-option" data-days="3">3 Days</div>
+                            <div class="days-option" data-days="4">4 Days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Room 3: MATHS 112 -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src="assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg">
+                    <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
+                        <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">MATHS 112</h4>
+                        <div class="room-details">
+                            <div class="room-detail-item">
+                                <span class="detail-label">Capacity:</span>
+                                <span>150 seats</span>
+                            </div>
+                            <div class="room-detail-item">
+                                <span class="detail-label">Facilities:</span>
+                                <span>Smart Board, Computer Lab, AC</span>
+                            </div>
+                            <div class="room-detail-item">
+                                <span class="detail-label">Location:</span>
+                                <span>AI Building, First Floor</span>
+                            </div>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-circle" style="background-color: #28a745;"></div>
+                            <h5 style="margin: 0;">Current Status: Available</h5>
+                        </div>
+                        <button class="status-btn view-calendar-btn">VIEW CALENDAR</button>
+                        <button class="status-btn booked-btn">BOOKED</button>
+                        <button class="status-btn available-btn">AVAILABLE</button>
+                        <button class="status-btn book-now-btn">BOOK NOW</button>
+                        <div class="days-dropdown">
+                            <p>Select number of days:</p>
+                            <div class="days-option" data-days="1">1 Day</div>
+                            <div class="days-option" data-days="2">2 Days</div>
+                            <div class="days-option" data-days="3">3 Days</div>
+                            <div class="days-option" data-days="4">4 Days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Room 4: MATHS 402 -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src="assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg">
+                    <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
+                        <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">MATHS 402</h4>
+                        <div class="room-details">
+                            <div class="room-detail-item">
+                                <span class="detail-label">Capacity:</span>
+                                <span>135 seats</span>
+                            </div>
+                            <div class="room-detail-item">
+                                <span class="detail-label">Facilities:</span>
+                                <span>Projector, Audio System, Whiteboard</span>
+                            </div>
+                            <div class="room-detail-item">
+                                <span class="detail-label">Location:</span>
+                                <span>AI Building, First Floor</span>
+                            </div>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-circle" style="background-color: #dc3545;"></div>
+                            <h5 style="margin: 0;">Current Status: Booked</h5>
+                        </div>
+                        <button class="status-btn view-calendar-btn">VIEW CALENDAR</button>
+                        <button class="status-btn booked-btn">BOOKED</button>
+                        <button class="status-btn available-btn">AVAILABLE</button>
+                        <button class="status-btn book-now-btn">BOOK NOW</button>
+                        <div class="days-dropdown">
+                            <p>Select number of days:</p>
+                            <div class="days-option" data-days="1">1 Day</div>
+                            <div class="days-option" data-days="2">2 Days</div>
+                            <div class="days-option" data-days="3">3 Days</div>
+                            <div class="days-option" data-days="4">4 Days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    <!-- Calendar Modal -->
+    <div class="calendar-modal" id="calendarModal">
+        <div class="calendar-modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-room-title" id="modalRoomTitle">Room Calendar</h3>
+            <div id="calendar"></div>
+        </div>
+    </div>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roomCards = document.querySelectorAll('.card');
+            const calendarModal = document.getElementById('calendarModal');
+            const modalRoomTitle = document.getElementById('modalRoomTitle');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // Calendar initialization
+            let calendarEl = document.getElementById('calendar');
+            let calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [],
+                selectable: true,
+                select: function(info) {
+                    alert('Selected ' + info.startStr + ' to ' + info.endStr);
+                }
+            });
+            calendar.render();
+            
+            // Close modal when clicking X
+            closeModal.addEventListener('click', function() {
+                calendarModal.style.display = "none";
+            });
+            
+            // Close modal when clicking outside of it
+            window.addEventListener('click', function(event) {
+                if (event.target == calendarModal) {
+                    calendarModal.style.display = "none";
+                }
+            });
+            
+            // Demo booking data (different for each room)
+            const roomBookings = {
+                'SEMINAR HALL': [
+                    { title: 'Conference', start: '2025-04-22', end: '2025-04-24', color: '#dc3545' },
+                    { title: 'Workshop', start: '2025-04-28', end: '2025-04-30', color: '#dc3545' }
+                ],
+                'MATHS 211': [
+                    { title: 'Lecture', start: '2025-04-24', color: '#dc3545' },
+                    { title: 'Exam', start: '2025-05-02', color: '#dc3545' }
+                ],
+                'MATHS 112': [
+                    { title: 'Seminar', start: '2025-04-26', end: '2025-04-27', color: '#dc3545' }
+                ],
+                'MATHS 402': [
+                    { title: 'Training', start: '2025-04-21', end: '2025-04-25', color: '#dc3545' }
+                ]
+            };
+            
+            roomCards.forEach(card => {
+                const bookedBtn = card.querySelector('.booked-btn');
+                const availableBtn = card.querySelector('.available-btn');
+                const bookNowBtn = card.querySelector('.book-now-btn');
+                const viewCalendarBtn = card.querySelector('.view-calendar-btn');
+                const daysDropdown = card.querySelector('.days-dropdown');
+                const daysOptions = card.querySelectorAll('.days-option');
+                const statusCircle = card.querySelector('.status-circle');
+                const statusText = card.querySelector('.status-indicator h5');
+                const roomTitle = card.querySelector('.room-title').textContent;
+                
+                // Handle BOOKED button click
+                bookedBtn.addEventListener('click', function() {
+                    statusCircle.style.backgroundColor = '#dc3545';
+                    statusText.textContent = 'Current Status: Booked';
+                    bookNowBtn.disabled = true;
+                    bookNowBtn.style.opacity = '0.5';
+                    // Hide days dropdown if visible
+                    daysDropdown.style.display = 'none';
+                });
+                
+                // Handle AVAILABLE button click
+                availableBtn.addEventListener('click', function() {
+                    statusCircle.style.backgroundColor = '#28a745';
+                    statusText.textContent = 'Current Status: Available';
+                    bookNowBtn.disabled = false;
+                    bookNowBtn.style.opacity = '1';
+                    // Hide days dropdown if visible
+                    daysDropdown.style.display = 'none';
+                });
+                
+                // Handle BOOK NOW button click
+                bookNowBtn.addEventListener('click', function() {
+                    if (statusCircle.style.backgroundColor === 'rgb(220, 53, 69)') {
+                        alert('This room is currently booked. Please select another room or check back later.');
+                        return;
+                    }
+                    
+                    // Toggle dropdown visibility
+                    if (daysDropdown.style.display === 'block') {
+                        daysDropdown.style.display = 'none';
+                    } else {
+                        daysDropdown.style.display = 'block';
+                    }
+                });
+                
+                // Handle VIEW CALENDAR button click
+                viewCalendarBtn.addEventListener('click', function() {
+                    modalRoomTitle.textContent = roomTitle + ' - Booking Calendar';
+                    calendarModal.style.display = "block";
+                    
+                    // Clear previous events
+                    calendar.removeAllEvents();
+                    
+                    // Add room-specific events
+                    if (roomBookings[roomTitle]) {
+                        calendar.addEventSource(roomBookings[roomTitle]);
+                    }
+                    
+                    // Adjust calendar size after modal is shown
+                    setTimeout(() => {
+                        calendar.updateSize();
+                    }, 100);
+                });
+                
+                // Handle days options clicks
+                daysOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        const days = this.getAttribute('data-days');
+                        
+                        // Mark room as booked
+                        statusCircle.style.backgroundColor = '#dc3545';
+                        statusText.textContent = 'Current Status: Booked';
+                        
+                        // Generate dates for calendar event
+                        const today = new Date();
+                        const startDate = today.toISOString().split('T')[0];
+                        const endDate = new Date(today);
+                        endDate.setDate(endDate.getDate() + parseInt(days));
+                        const endDateStr = endDate.toISOString().split('T')[0];
+                        
+                        // Add booking to calendar
+                        calendar.addEvent({
+                            title: 'New Booking',
+                            start: startDate,
+                            end: endDateStr,
+                            color: '#dc3545'
+                        });
+                        
+                        if (!roomBookings[roomTitle]) {
+                            roomBookings[roomTitle] = [];
+                        }
+                        roomBookings[roomTitle].push({
+                            title: 'New Booking',
+                            start: startDate,
+                            end: endDateStr,
+                            color: '#dc3545'
+                        });
+                        
+                        // Show booking confirmation
+                        alert(`You've selected ${roomTitle} for ${days} day(s). Redirecting to booking details...`);
+                        
+                        // Hide the dropdown
+                        daysDropdown.style.display = 'none';
+                        
+                        // Redirect to booking details page (can be replaced with actual redirect)
+                        setTimeout(() => {
+                            // This would normally be a window.location.href = "booking-details.html";
+                            // For demo purposes, we'll just alert
+                            alert(`Redirecting to booking details page for ${roomTitle} (${days} day(s))...`);
+                        }, 500);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
