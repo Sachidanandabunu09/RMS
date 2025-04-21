@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -7,14 +8,14 @@
     <title>ROOMS ECE</title>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js'></script>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href= "{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alkatra&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alumni+Sans+Inline+One&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton+SC&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/Articles-Cards-images.css">
+    <link rel="stylesheet" href= "{% static 'assets_home/css/Articles-Cards-images.css' %}">
     <!-- Add Calendar CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css">
     <style>
@@ -181,7 +182,7 @@
             <!-- Room 1: Seminar Hall -->
             <div class="col-lg-4">
                 <div class="card">
-                    <img class="card-img-top w-100 d-block fit-cover" alt="auditorium" style="height: 200px;" src="assets/img/gff3fdf2fc2cd460baac5c5b248ebe3c9e04cb85135e315e4e4d5acde32c92f1dae8e4d8bcc7597a0a947a1cd7ac523aa_640.jpg">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="auditorium" style="height: 200px;" src= "{% static 'assets/img/gff3fdf2fc2cd460baac5c5b248ebe3c9e04cb85135e315e4e4d5acde32c92f1dae8e4d8bcc7597a0a947a1cd7ac523aa_640.jpg' %}">
                     <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
                         <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">SEMINAR HALL</h4>
                         <div class="room-details">
@@ -220,7 +221,7 @@
             <!-- Room 2: AI102 -->
             <div class="col-lg-4">
                 <div class="card">
-                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src="assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src= "{% static 'assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg' %}">
                     <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
                         <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">CSE 102</h4>
                         <div class="room-details">
@@ -259,7 +260,7 @@
             <!-- Room 3: AI104 -->
             <div class="col-lg-4">
                 <div class="card">
-                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src="assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src= "{% static 'assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg' %}">
                     <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
                         <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">CSE 201</h4>
                         <div class="room-details">
@@ -298,7 +299,7 @@
             <!-- Room 4: AI103 -->
             <div class="col-lg-4">
                 <div class="card">
-                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src="assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="classroom" style="height: 200px;" src= "{% static 'assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg' %}">
                     <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
                         <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">CSE 103</h4>
                         <div class="room-details">
@@ -337,7 +338,7 @@
             <!-- Room 5: Conference Hall -->
             <div class="col-lg-4">
                 <div class="card">
-                    <img class="card-img-top w-100 d-block fit-cover" alt="conference room" style="height: 200px;" src="assets/img/gff3fdf2fc2cd460baac5c5b248ebe3c9e04cb85135e315e4e4d5acde32c92f1dae8e4d8bcc7597a0a947a1cd7ac523aa_640.jpg">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="conference room" style="height: 200px;" src= "{% static 'assets/img/gff3fdf2fc2cd460baac5c5b248ebe3c9e04cb85135e315e4e4d5acde32c92f1dae8e4d8bcc7597a0a947a1cd7ac523aa_640.jpg' %}">
                     <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
                         <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">CONFERENCE HALL</h4>
                         <div class="room-details">
@@ -376,7 +377,7 @@
             <!-- Room 6: Smart Lecture Hall -->
             <div class="col-lg-4">
                 <div class="card">
-                    <img class="card-img-top w-100 d-block fit-cover" alt="lecture hall" style="height: 200px;" src="assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg">
+                    <img class="card-img-top w-100 d-block fit-cover" alt="lecture hall" style="height: 200px;" src= "{% static 'assets/img/g6009d09c7721ea2e45e35bae4de18df2cf31a21eb48bbb5b64873fea2b7698c1500d291e34b729b459a86d65bdc001c80e85fb500d545da35b5af5ee9cad7fa9_640.jpg' %}">
                     <div class="card-body p-4" style="background: linear-gradient(#cad2c5 3%, #778da9 100%);">
                         <h4 class="card-title room-title" style="font-family: Alkatra, serif;font-size: 40px;">SMART LECTURE HALL</h4>
                         <div class="room-details">
@@ -423,7 +424,7 @@
         </div>
     </div>
 
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src= "{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
